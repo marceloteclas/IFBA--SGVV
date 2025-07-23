@@ -1,6 +1,8 @@
 package com.sgvv.ifba.service;
 
 import java.util.List;
+
+import com.sgvv.ifba.dto.ClienteDTO;
 import com.sgvv.ifba.entity.Cliente;
 import com.sgvv.ifba.entity.Endereco;
 
@@ -12,4 +14,6 @@ public interface ClienteService {
         Endereco cadastrarEndereco(Endereco endereco);
         List<Endereco> buscarEnderecoPorCep(String cep);
         Endereco atualizarEndereco(Endereco endereco);
+        List<ClienteDTO> listarClientes();
+        ClienteDTO salvarCliente(ClienteDTO clienteDTO);
 }

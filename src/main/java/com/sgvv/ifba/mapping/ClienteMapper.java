@@ -5,7 +5,7 @@ import com.sgvv.ifba.dto.ClienteDTO;
 import com.sgvv.ifba.entity.Cliente;
 
 @Mapper(componentModel = "spring")
-public interface ClienteMapper {
-    Cliente toEntity(ClienteDTO clienteDTO);
-    ClienteDTO toDTO(Cliente cliente);
+public abstract class ClienteMapper {
+    public abstract Cliente toEntity(ClienteDTO dto);
+    public abstract ClienteDTO toDto(Cliente entity);
 }

@@ -31,4 +31,5 @@ public class ClienteDTO {
     private String cpf;
 
     private EnderecoDTO endereco;
+    
 }

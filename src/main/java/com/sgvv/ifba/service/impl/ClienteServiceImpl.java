@@ -1,7 +1,9 @@
 package com.sgvv.ifba.service.impl;
 
+import com.sgvv.ifba.dto.ClienteDTO;
 import com.sgvv.ifba.entity.Cliente;
 import com.sgvv.ifba.entity.Endereco;
+import com.sgvv.ifba.mapping.ClienteMapper;
 import com.sgvv.ifba.repository.ClienteRepository;
 import com.sgvv.ifba.repository.EnderecoRepository;
 import com.sgvv.ifba.service.ClienteService;
@@ -13,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClienteServiceImpl implements ClienteService {
     private final ClienteRepository clienteRepository;
+    private final ClienteMapper clienteMapper;
     private final EnderecoRepository enderecoRepository;
 
     @Override
@@ -32,6 +35,14 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public Cliente atualizarCliente(Cliente cliente) {
         return clienteRepository.save(cliente);
+    }
+    
+    @Override
+    public List<ClienteDTO> listarClientes() {
+        return clienteRepository.findAll()
+        .stream()
+        .map(clienteMapper::toDto)
+        .toList();
     }
 
     @Override
@@ -65,4 +76,11 @@ public class ClienteServiceImpl implements ClienteService {
 
         return enderecoRepository.save(entity);
     }
+    @Override
+    public ClienteDTO salvarCliente(ClienteDTO clienteDTO) {
+        Cliente entity = clienteMapper.toEntity(clienteDTO);
+        Cliente savedCliente = clienteRepository.save(entity);
+        return clienteMapper.toDto(savedCliente);
+    }
+
 }
