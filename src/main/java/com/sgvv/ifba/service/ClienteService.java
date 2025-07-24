@@ -1,19 +1,13 @@
 package com.sgvv.ifba.service;
 
-import java.util.List;
-
 import com.sgvv.ifba.dto.ClienteDTO;
-import com.sgvv.ifba.entity.Cliente;
-import com.sgvv.ifba.entity.Endereco;
+import java.util.List;
+import java.util.Optional;
 
 public interface ClienteService {
-        Cliente cadastrarCliente(Cliente cliente);
-        List<Cliente> buscarClientePorCpf(String cpf);
-        Cliente atualizarCliente(Cliente cliente);
-        void deletarCliente(long id);
-        Endereco cadastrarEndereco(Endereco endereco);
-        List<Endereco> buscarEnderecoPorCep(String cep);
-        Endereco atualizarEndereco(Endereco endereco);
-        List<ClienteDTO> listarClientes();
-        ClienteDTO salvarCliente(ClienteDTO clienteDTO);
+    ClienteDTO salvar(ClienteDTO clienteDTO);
+    Optional<ClienteDTO> atualizarPorId(Long id, ClienteDTO clienteDTO);
+    boolean deletar(Long id);
+    List<ClienteDTO> listarClientes();
+    List<ClienteDTO> buscarClientePorCpf(String cpf);
 }

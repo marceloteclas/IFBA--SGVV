@@ -1,57 +1,53 @@
 package com.sgvv.ifba.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-
+import com.sgvv.ifba.dto.ClienteDTO;
 import com.sgvv.ifba.service.ClienteService;
-import com.sgvv.ifba.entity.Cliente;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
 
-
-@Controller
+@RestController
+@RequestMapping("/clientes")
+@RequiredArgsConstructor
 public class ClienteController {
+
     private final ClienteService clienteService;
 
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
+    @PostMapping
+    public ResponseEntity<ClienteDTO> salvar(@RequestBody @Valid ClienteDTO clienteDTO) {
+        ClienteDTO salvo = clienteService.salvar(clienteDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
-    @GetMapping("/listarClientes")
-    public String listarClientes(Model model) {
-        model.addAttribute("clientes", clienteService.listarClientes());
-        return "listarClientes";
+    @GetMapping
+    public ResponseEntity<List<ClienteDTO>> listarTodos() {
+        return ResponseEntity.ok(clienteService.listarClientes());
     }
-    @GetMapping("/buscarClientePorCpf")
-    public String buscarClientePorCpf(@RequestParam String cpf, Model model) {
-        model.addAttribute("clientes", clienteService.buscarClientePorCpf(cpf));
-        return "listarClientes";
-    }
-    @GetMapping("/cadastrarCliente")
-    public String cadastrarCliente(Model model) {
-        model.addAttribute("cliente", new Cliente());
-        return "cadastrarCliente";
-    }
-    @GetMapping("/atualizarCliente")
-    public String atualizarCliente(@RequestParam Long id, Model model) {
-        Cliente cliente = clienteService.buscarClientePorCpf(id.toString()).stream().findFirst().
-        orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado com o ID: " + id));
-        model.addAttribute("cliente", cliente);
-        return "atualizarCliente";
-    }
-    @GetMapping("/deletarCliente")
-    public String deletarCliente(@RequestParam Long id) {
-        clienteService.deletarCliente(id);
-        return "redirect:/listarClientes";
-    }
-    @PostMapping("/SalvarCliente")
-    public String salvarCliente(@RequestBody Cliente cliente) {
-        clienteService.cadastrarCliente(cliente);
-        return "redirect:/listarClientes";
-    }
-    
 
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<List<ClienteDTO>> buscarPorCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok(clienteService.buscarClientePorCpf(cpf));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClienteDTO> atualizar(@PathVariable Long id,
+                                                 @RequestBody @Valid ClienteDTO clienteDTO) {
+        Optional<ClienteDTO> atualizado = clienteService.atualizarPorId(id, clienteDTO);
+        return atualizado.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        boolean deletado = clienteService.deletar(id);
+        if (deletado) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
