@@ -9,9 +9,11 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data // Gera getter, setter, toString, equals e hashCode
 @AllArgsConstructor // Cria um construtor que recebe como parâmetros todos os atributos da classe
+@NoArgsConstructor // Cria um construtor padrão que não recebe nenhum argumento
 @Entity
 @Table(name = "TB_ENDERECO")
 public class Endereco {
