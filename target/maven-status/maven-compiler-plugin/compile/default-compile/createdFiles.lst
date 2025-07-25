@@ -1,0 +1,7 @@
+com\sgvv\ifba\dto\EnderecoDTO.class
+com\sgvv\ifba\IfbaApplication.class
+com\sgvv\ifba\model\Endereco.class
+com\sgvv\ifba\controller\EnderecoController.class
+com\sgvv\ifba\service\impl\EnderecoServiceImpl.class
+com\sgvv\ifba\repository\EnderecoRepository.class
+com\sgvv\ifba\service\EnderecoService.class
