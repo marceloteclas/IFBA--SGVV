@@ -17,12 +17,12 @@
       <sub><b><a href="https://github.com/JandersonMota">Janderson Mota</a></b></sub>
     </td>
     <td align="center">
-      <img src="https://avatars.githubusercontent.com/u/114780494?v=4" width="100px;" alt="Foto da Integrante Sarah"/><br />
+      <img src="https://avatars.githubusercontent.com/u/114780494?v=4" width="100px;" alt="Foto da Integrante Marcelo"/><br />
       <sub><b><a href="https://github.com/marceloteclas">Marcelo</a></b></sub>
     </td>
     <td align="center">
-      <img src="https://avatars.githubusercontent.com/u/110790276?v=4" width="100px;" alt="Foto da Integrante Sarah"/><br />
-      <sub><b><a href="https://github.com/">Ronaldo</a></b></sub>
+      <img src="https://avatars.githubusercontent.com/u/129338943?v=4" width="100px;" alt="Foto da Integrante Ronaldo"/><br />
+      <sub><b><a href="https://github.com/Ronaldo-Correia">Ronaldo</a></b></sub>
     </td>
   </tr>
 </table>
