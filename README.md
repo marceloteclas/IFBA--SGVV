@@ -51,9 +51,65 @@ O sistema visa registrar as vendas de veículos, cadastro de profissionais e cli
 •	Relacionamentos entre entidades para manter integridade dos dados.
 •	Mensagens de sucesso e erro com feedback ao usuário.
 
+## Estrutura do Projeto
+
+```
+/IFBA--SGVV                                                     # Diretório raiz do projeto.
+├── src                                                         # Pasta de arquivos fonte.
+│   ├── main                                                    # Código fonte principal e recursos.
+│   │   ├── java                                                # Código-fonte Java da aplicação.
+│   │   │   └── com                                             # Pacote de domínio de nível superior.
+│   │   │       └── sgvv                                        # Subpacote da organização.
+│   │   │           └── ifba                                    # Pacote raiz da aplicação.
+│   │   │               ├── controller                          # Camada de Apresentação (Controller)
+│   │   │               │   └── ClienteController.java
+│   │   │               │   └── VeiculoController.java
+│   │   │               │   └── EnderecoController.java
+│   │   │               ├── dto                                 # Objetos de Transferência de Dados
+│   │   │               │   └── ClienteDTO.java
+│   │   │               │   └── VeiculoDTO.java
+│   │   │               │   └── EnderecoDTO.java
+│   │   │               ├── model                               # Camada de Domínio / Entidades
+│   │   │               │   └── Veiculo.java
+│   │   │               │   └── Endereco.java
+│   │   │               │   └── Cliente.java
+│   │   │               │   └── Usuario.java
+│   │   │               ├── repository                          # Camada de Persistência de Dados
+│   │   │               │   └── ClienteRepository.java
+│   │   │               │   └── VeiculoRepository.java
+│   │   │               │   └── EnderecoRepository.java
+│   │   │               │   └── ...
+│   │   │               ├── service                             # Interfaces de Lógica de Negócio
+│   │   │               |   └── ClienteService.java
+│   │   │               |   └── VeiculoService.java
+│   │   │               |   └── EnderecoService.java
+│   │   │               |   └── impl                            # Implementações da Lógica de Negócio
+│   │   │               |       └── VeiculoServiceImpl.java
+│   │   │               |       └── EnderecoServiceImpl.java
+│   │   │               ├── config                              # Configurações globais da aplicação (ex: segurança, filtros).
+│   │   │               ├── exception                           # Classes de exceção personalizadas.
+│   │   │               ├── mapping                             # Mapeadores para converter entre DTOs e Entidades.
+│   │   │               |   └── ClienteMapper.java
+│   │   │               └── IfbaApplication.java                # Classe principal do Spring Boot, ponto de entrada da aplicação.
+│   │   └── resources
+│   │       ├── application.properties                          # Configurações do Spring Boot
+│   │       └── static                                          # Arquivos estáticos (HTML, CSS, JS) - opcional
+│   │           └── index.html
+│   └── test                                                    # Pasta para arquivos de teste.
+│       └── java                                                # Código fonte para testes.
+│           └── com
+│               └── sgvv
+│                   └── ifba
+│                       └── IfbaApplicationTests.java           # Testes unitários e de integração
+└── pom.xml                                                     # Arquivo de configuração do Maven, gerencia dependências e build.
+```
+
 ## Banco de Dados
 
 ``` SQL SERVER
+CREATE DATABASE bd_sgvv;
+
+USE bd_sgvv;
 
 CREATE TABLE Endereco (
   id_endereco INT IDENTITY(1,1) PRIMARY KEY,
