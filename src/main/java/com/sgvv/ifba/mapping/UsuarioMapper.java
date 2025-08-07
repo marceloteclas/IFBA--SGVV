@@ -4,11 +4,9 @@ import org.mapstruct.Mapper;
 import com.sgvv.ifba.dto.UsuarioDTO;
 import com.sgvv.ifba.model.Usuario;
 
-
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = { NivelAcessoMapper.class })
 public interface UsuarioMapper {
+    Usuario toEntity(UsuarioDTO usuarioDTO);
 
-    Usuario toEntity(UsuarioDTO dto);
-    UsuarioDTO toDto(Usuario entity);
-    
+    UsuarioDTO toDto(Usuario usuario);
 }

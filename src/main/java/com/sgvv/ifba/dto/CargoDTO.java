@@ -2,7 +2,9 @@ package com.sgvv.ifba.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Generated;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -14,5 +16,4 @@ public class CargoDTO {
     @Size(max = 100, message = "Nome não pode ter mais de 100")
     private String nome;
 
-  
 }

@@ -2,7 +2,6 @@ package com.sgvv.ifba.service;
 
 import com.sgvv.ifba.dto.CargoDTO;
 import java.util.List;
-import java.util.Optional;
 
 public interface CargoService {
 
@@ -12,8 +11,4 @@ public interface CargoService {
 
     List<CargoDTO> listarCargo();
 
-  
-
-    
-    
 }

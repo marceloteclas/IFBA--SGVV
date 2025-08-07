@@ -6,7 +6,7 @@ import com.sgvv.ifba.model.Cargo;
 import java.util.List;
 
 @Repository
-public class CargoRepository extends JpaRepository<Cargo, Long> {
-    List<Cargo> findByNome(String nome);
-    
+public interface CargoRepository extends JpaRepository<Cargo, Long> {
+    List<Cargo> findBynome(String nome);
+
 }

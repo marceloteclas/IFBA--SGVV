@@ -7,9 +7,7 @@ import com.sgvv.ifba.repository.CargoRepository;
 import com.sgvv.ifba.service.CargoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,10 +20,10 @@ public class CargoServiceImpl implements CargoService {
     public CargoDTO salvar(CargoDTO cargoDTO) {
         Cargo entity = cargoMapper.toEntity(cargoDTO);
         Cargo saved = cargoRepository.save(entity);
-        return cargoMapper.toDto(saved);
+        return cargoMapper.toDTO(saved);
     }
 
-     @Override
+    @Override
     public boolean deletar(Long id) {
         if (!cargoRepository.existsById(id)) {
             return false;
@@ -33,13 +31,13 @@ public class CargoServiceImpl implements CargoService {
         cargoRepository.deleteById(id);
         return true;
     }
-   
+
     @Override
     public List<CargoDTO> listarCargo() {
         return cargoRepository.findAll()
                 .stream()
-                .map(cargoMapper::toDto)
+                .map(cargoMapper::toDTO)
                 .toList();
     }
-    
+
 }

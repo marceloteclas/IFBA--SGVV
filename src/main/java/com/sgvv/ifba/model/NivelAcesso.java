@@ -1,26 +1,29 @@
 package com.sgvv.ifba.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
+@Entity
+@Table(name = "nivel_acesso")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "nivel_acesso")
 public class NivelAcesso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(nullable = false, unique = true)
-    private String nome; // Exemplo: "ADMIN", "USUARIO", "GERENTE", etc.
+    private String nivel;
 
-    @ManyToMany(mappedBy = "niveisAcesso")
-    private Set<Usuario> usuarios;
 }

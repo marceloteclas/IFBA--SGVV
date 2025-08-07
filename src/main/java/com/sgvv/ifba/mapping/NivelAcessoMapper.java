@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface NivelAcessoMapper {
-    NivelAcesso toEntity(NivelAcessoDTO dto);
-    NivelAcessoDTO toDto(NivelAcesso entity);
+    NivelAcesso toEntity(NivelAcessoDTO nivelAcessoDTO);
+
+    NivelAcessoDTO toDto(NivelAcesso nivelAcesso);
 }
