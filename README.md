@@ -44,12 +44,12 @@ CPF	Cadastro de Pessoa Física
 O sistema visa registrar as vendas de veículos, cadastro de profissionais e clientes, bem como vendas em lojas de automóveis, proporcionando mais controle, organização e eficiência nos processos internos, substituindo planilhas manuais ou registros físicos.
 
 ## 3. Características Gerais do Sistema
-•	Interface amigável e responsiva para uso em desktop e dispositivos móveis.
-•	Validação de dados obrigatórios.
-•	Garantia de unicidade em campos críticos como CPF e placa do veículo.
-•	Histórico de vendas com filtros por cliente ou profissional.
-•	Relacionamentos entre entidades para manter integridade dos dados.
-•	Mensagens de sucesso e erro com feedback ao usuário.
+- Interface amigável e responsiva para uso em desktop e dispositivos móveis.
+- Validação de dados obrigatórios.
+- Garantia de unicidade em campos críticos como CPF e placa do veículo.
+- Histórico de vendas com filtros por cliente ou profissional.
+- Relacionamentos entre entidades para manter integridade dos dados.
+- Mensagens de sucesso e erro com feedback ao usuário.
 
 ## Ferramentas
 - Java: JDK 21.0.6 LTS
