@@ -10,6 +10,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Data // Gera getter, setter, toString, equals e hashCode
 @AllArgsConstructor // Cria um construtor que recebe como parâmetros todos os atributos da classe
@@ -22,24 +24,34 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull // Faz a validação no service
-    @Column(nullable = false) // Cria esse campo no banco de dados como NOT NULL
+    @NotBlank(message = "O Estado não pode ser vazio")
+    @Size(max = 50, message = "O Estado deve ter no máximo 50 caracteres")
+    //@NotNull // Faz a validação no service
+    @Column(nullable = false, length = 19) // Cria esse campo no banco de dados como NOT NULL
     private String estado;
 
-    @NotNull
-    @Column(nullable = false)
+    @NotBlank(message = "A cidade não pode ser vazia")
+    @Size(max = 100, message = "A cidade deve ter no máximo 100 caracteres")
+    //@NotNull
+    @Column(nullable = false, length = 100)
     private String cidade;
 
-    @NotNull
-    @Column(nullable = false)
+    @NotBlank(message = "O bairro não pode ser vazio")
+    @Size(max = 100, message = "O bairro deve ter no máximo 100 caracteres")
+    //@NotNull
+    @Column(nullable = false, length = 100)
     private String bairro;
 
-    @NotNull
-    @Column(nullable = false)
+    @NotBlank(message = "O logradouro não pode ser vazio")
+    @Size(max = 200, message = "O logradouro deve ter no máximo 200 caracteres")
+    //@NotNull
+    @Column(nullable = false, length = 200)
     private String logradouro;
 
-    @NotNull
-    @Column(nullable = false)
+    @NotBlank(message = "A identificação residencial não pode ser vazia")
+    @Size(max = 100, message = "A identificação residencial deve ter no máximo 100 caracteres")
+    //@NotNull
+    @Column(nullable = false, length = 100)
     private String identificacaoResidencial;
 
 }
