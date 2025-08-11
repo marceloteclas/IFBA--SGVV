@@ -18,11 +18,11 @@
     </td>
     <td align="center">
       <img src="https://avatars.githubusercontent.com/u/114780494?v=4" width="100px;" alt="Foto da Integrante Marcelo"/><br />
-      <sub><b><a href="https://github.com/marceloteclas">Marcelo</a></b></sub>
+      <sub><b><a href="https://github.com/marceloteclas">Marcelo Jesus</a></b></sub>
     </td>
     <td align="center">
       <img src="https://avatars.githubusercontent.com/u/129338943?v=4" width="100px;" alt="Foto da Integrante Ronaldo"/><br />
-      <sub><b><a href="https://github.com/Ronaldo-Correia">Ronaldo</a></b></sub>
+      <sub><b><a href="https://github.com/Ronaldo-Correia">Ronaldo Correia</a></b></sub>
     </td>
   </tr>
 </table>
