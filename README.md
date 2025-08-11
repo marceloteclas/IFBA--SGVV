@@ -51,6 +51,10 @@ O sistema visa registrar as vendas de veículos, cadastro de profissionais e cli
 •	Relacionamentos entre entidades para manter integridade dos dados.
 •	Mensagens de sucesso e erro com feedback ao usuário.
 
+## Ferramentas
+- Java: JDK 21.0.6 LTS
+- Maven: 3.9.9
+
 ## Estrutura do Projeto
 
 ```
@@ -104,7 +108,26 @@ O sistema visa registrar as vendas de veículos, cadastro de profissionais e cli
 └── pom.xml                                                     # Arquivo de configuração do Maven, gerencia dependências e build.
 ```
 
+## Configurar o SQL Server
+
+``` application.yml
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=nome_do_seu_banco
+    username: seu_usuario
+    password: sua_senha
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.SQLServer2012Dialect
+```
+
 ## Banco de Dados
+A tabela *Logs_eventos* é opcional e está construida na documentação para caso resolva implementa-lá.
 
 ``` SQL SERVER
 CREATE DATABASE bd_sgvv;
@@ -180,7 +203,7 @@ CREATE TABLE Usuario (
 );
 GO
 
-
+-- OPCIONAL
 CREATE TABLE Logs_eventos(
   id_log BIGINT IDENTITY(1,1) PRIMARY KEY, -- ID único para cada evento de log, auto-incrementável
   data_hora_evento DATETIME2(7) NOT NULL DEFAULT GETDATE(), -- Carimbo de data/hora exato do evento, com alta precisão
@@ -190,4 +213,15 @@ CREATE TABLE Logs_eventos(
   usuario_responsavel VARCHAR(80) NOT NULL, -- Usuário que realizou a ação (pode ser o login da tabela 'Usuario' ou 'SUSER_SNAME()')
   detalhes_evento NVARCHAR(MAX) -- Descrição detalhada do evento (ex: 'Cliente ID 10 atualizado: Nome de "Antônio" para "Antônio Silva"'). NVARCHAR(MAX) para texto longo.
 );
+```
+
+## Dependências utilizadas no **Maven**
+Adicione a dependência no pom.xml do driver do SQL Server 2019.
+
+``` xml
+<dependency>
+    <groupId>com.microsoft.sqlserver</groupId>
+    <artifactId>mssql-jdbc</artifactId>
+    <version>12.6.1.jre11</version>
+</dependency>
 ```

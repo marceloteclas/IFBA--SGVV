@@ -71,16 +71,23 @@
         </dependency>
 
 		<dependency>
-   		 <groupId>org.mapstruct</groupId>
-  	  	<artifactId>mapstruct</artifactId>
-    	<version>1.5.5.Final</version>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.5.Final</version>
 		</dependency>	
 		<dependency>
-		<groupId>org.mapstruct</groupId>
-		<artifactId>mapstruct-processor</artifactId>
-		<version>1.5.5.Final</version>
-		<scope>provided</scope>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.5.5.Final</version>
+			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>12.6.1.jre11</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
