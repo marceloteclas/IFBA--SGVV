@@ -38,6 +38,8 @@ public class Cliente {
     private String cpf;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id") 
     private Endereco endereco;
+
 
 }
