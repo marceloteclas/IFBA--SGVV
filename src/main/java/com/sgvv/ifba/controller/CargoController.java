@@ -24,8 +24,12 @@ public class CargoController {
 
     @PostMapping
     public ResponseEntity<CargoDTO> salvar(@RequestBody @Valid CargoDTO cargoDTO) {
-        CargoDTO salvo = cargoService.salvar(cargoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+        CargoDTO cargoSalvo = cargoService.salvar(cargoDTO);
+        if (cargoSalvo == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // Retorna 400 Bad Request se não puder salvar
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(cargoDTO);
+
     }
 
     @DeleteMapping("/{id}")

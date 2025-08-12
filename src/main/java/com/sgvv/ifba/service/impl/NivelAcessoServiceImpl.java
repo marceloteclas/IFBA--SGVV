@@ -2,7 +2,6 @@ package com.sgvv.ifba.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sgvv.ifba.dto.NivelAcessoDTO;
 import com.sgvv.ifba.mapping.NivelAcessoMapper;
@@ -16,18 +15,22 @@ public class NivelAcessoServiceImpl implements NivelAcessoService {
     private final NivelAcessoRepository nivelAcessoRepository;
     private final NivelAcessoMapper nivelAcessoMapper;
 
-    @Autowired
-    public NivelAcessoServiceImpl(NivelAcessoRepository nivelAcessoRepository,
-            NivelAcessoMapper nivelAcessoMapper) {
+    public NivelAcessoServiceImpl(NivelAcessoRepository nivelAcessoRepository, NivelAcessoMapper nivelAcessoMapper) {
         this.nivelAcessoRepository = nivelAcessoRepository;
         this.nivelAcessoMapper = nivelAcessoMapper;
     };
 
     @Override
     public NivelAcessoDTO salvar(NivelAcessoDTO nivelDTO) {
-        NivelAcesso entity = nivelAcessoMapper.toEntity(nivelDTO);
-        NivelAcesso saved = nivelAcessoRepository.save(entity);
-        return nivelAcessoMapper.toDto(saved);
+
+        NivelAcesso nivelAcesso = new NivelAcesso();
+        nivelAcesso.setId(nivelDTO.getId());
+        nivelAcesso.setNivel(nivelDTO.getNivel());
+
+        NivelAcesso savedNivelAcesso = nivelAcessoRepository.save(nivelAcesso);
+        nivelDTO.setId(savedNivelAcesso.getId());
+        return nivelDTO;
+
     }
 
     @Override

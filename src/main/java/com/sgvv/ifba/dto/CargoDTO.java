@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CargoDTO {
+
     private Long id;
 
     @NotBlank(message = "Nome é obrigatório")

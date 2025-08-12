@@ -30,10 +30,10 @@ public class UsarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
-    @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> listarTodos() {
-        return ResponseEntity.ok(usuarioService.listarUsuarios());
-    }
+    // @GetMapping
+    // public ResponseEntity<List<UsuarioDTO>> listarTodos() {
+    // return ResponseEntity.ok(usuarioService.listarUsuarios());
+    // }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {

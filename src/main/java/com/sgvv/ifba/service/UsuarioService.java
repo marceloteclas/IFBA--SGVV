@@ -10,6 +10,6 @@ public interface UsuarioService {
 
     boolean deletar(Long id);
 
-    List<UsuarioDTO> listarUsuarios();
+    // List<UsuarioDTO> listarUsuarios();
 
 }

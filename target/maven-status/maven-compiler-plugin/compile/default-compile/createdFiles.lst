@@ -24,8 +24,10 @@ com\sgvv\ifba\model\Usuario.class
 com\sgvv\ifba\model\NivelAcesso.class
 com\sgvv\ifba\service\impl\ClienteServiceImpl.class
 com\sgvv\ifba\service\CargoService.class
+com\sgvv\ifba\mapping\EnderecoMapperImpl.class
 com\sgvv\ifba\service\impl\NivelAcessoServiceImpl.class
 com\sgvv\ifba\controller\CargoController.class
+com\sgvv\ifba\mapping\EnderecoMapper.class
 com\sgvv\ifba\repository\EnderecoRepository.class
 com\sgvv\ifba\model\Cargo.class
 com\sgvv\ifba\mapping\NivelAcessoMapperImpl.class

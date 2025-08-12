@@ -27,8 +27,9 @@ public class NivelAcessoController {
 
     @PostMapping
     public ResponseEntity<NivelAcessoDTO> salvar(@RequestBody @Valid NivelAcessoDTO nivelAcessoDTO) {
-        NivelAcessoDTO salvo = nivelAcessoService.salvar(nivelAcessoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+
+        NivelAcessoDTO nivelAcessoSalvo = nivelAcessoService.salvar(nivelAcessoDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nivelAcessoSalvo); // Retorna 201 Created com o DTO salvo
     }
 
     @GetMapping
