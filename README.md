@@ -53,7 +53,7 @@ O sistema visa registrar as vendas de veículos, cadastro de profissionais e cli
 ## Ferramentas
 - Java: JDK 21.0.6 LTS
 - Maven: 3.9.9
-
+test
 ## Estrutura do Projeto
 
 ```
