@@ -1,4 +1,3 @@
-
 # Sistema de Gestão de Veículos e Vendas (SGVV)
 - **Instituição:** IFBA - Instituto Federal da Bahia
 - **Curso:** Análise e Desenvolvimento de Sistemas (ADS)
@@ -44,16 +43,95 @@ CPF	Cadastro de Pessoa Física
 O sistema visa registrar as vendas de veículos, cadastro de profissionais e clientes, bem como vendas em lojas de automóveis, proporcionando mais controle, organização e eficiência nos processos internos, substituindo planilhas manuais ou registros físicos.
 
 ## 3. Características Gerais do Sistema
-•	Interface amigável e responsiva para uso em desktop e dispositivos móveis.
-•	Validação de dados obrigatórios.
-•	Garantia de unicidade em campos críticos como CPF e placa do veículo.
-•	Histórico de vendas com filtros por cliente ou profissional.
-•	Relacionamentos entre entidades para manter integridade dos dados.
-•	Mensagens de sucesso e erro com feedback ao usuário.
+- Interface amigável e responsiva para uso em desktop e dispositivos móveis.
+- Validação de dados obrigatórios.
+- Garantia de unicidade em campos críticos como CPF e placa do veículo.
+- Histórico de vendas com filtros por cliente ou profissional.
+- Relacionamentos entre entidades para manter integridade dos dados.
+- Mensagens de sucesso e erro com feedback ao usuário.
+
+## Ferramentas
+- Java: JDK 21.0.6 LTS
+- Maven: 3.9.9
+test
+## Estrutura do Projeto
+
+```
+/IFBA--SGVV                                                     # Diretório raiz do projeto.
+├── src                                                         # Pasta de arquivos fonte.
+│   ├── main                                                    # Código fonte principal e recursos.
+│   │   ├── java                                                # Código-fonte Java da aplicação.
+│   │   │   └── com                                             # Pacote de domínio de nível superior.
+│   │   │       └── sgvv                                        # Subpacote da organização.
+│   │   │           └── ifba                                    # Pacote raiz da aplicação.
+│   │   │               ├── controller                          # Camada de Apresentação (Controller)
+│   │   │               │   └── ClienteController.java
+│   │   │               │   └── VeiculoController.java
+│   │   │               │   └── EnderecoController.java
+│   │   │               ├── dto                                 # Objetos de Transferência de Dados
+│   │   │               │   └── ClienteDTO.java
+│   │   │               │   └── VeiculoDTO.java
+│   │   │               │   └── EnderecoDTO.java
+│   │   │               ├── model                               # Camada de Domínio / Entidades
+│   │   │               │   └── Veiculo.java
+│   │   │               │   └── Endereco.java
+│   │   │               │   └── Cliente.java
+│   │   │               │   └── Usuario.java
+│   │   │               ├── repository                          # Camada de Persistência de Dados
+│   │   │               │   └── ClienteRepository.java
+│   │   │               │   └── VeiculoRepository.java
+│   │   │               │   └── EnderecoRepository.java
+│   │   │               │   └── ...
+│   │   │               ├── service                             # Interfaces de Lógica de Negócio
+│   │   │               |   └── ClienteService.java
+│   │   │               |   └── VeiculoService.java
+│   │   │               |   └── EnderecoService.java
+│   │   │               |   └── impl                            # Implementações da Lógica de Negócio
+│   │   │               |       └── VeiculoServiceImpl.java
+│   │   │               |       └── EnderecoServiceImpl.java
+│   │   │               ├── config                              # Configurações globais da aplicação (ex: segurança, filtros).
+│   │   │               ├── exception                           # Classes de exceção personalizadas.
+│   │   │               ├── mapping                             # Mapeadores para converter entre DTOs e Entidades.
+│   │   │               |   └── ClienteMapper.java
+│   │   │               └── IfbaApplication.java                # Classe principal do Spring Boot, ponto de entrada da aplicação.
+│   │   └── resources
+│   │       ├── application.properties                          # Configurações do Spring Boot
+│   │       └── static                                          # Arquivos estáticos (HTML, CSS, JS) - opcional
+│   │           └── index.html
+│   └── test                                                    # Pasta para arquivos de teste.
+│       └── java                                                # Código fonte para testes.
+│           └── com
+│               └── sgvv
+│                   └── ifba
+│                       └── IfbaApplicationTests.java           # Testes unitários e de integração
+└── pom.xml                                                     # Arquivo de configuração do Maven, gerencia dependências e build.
+```
+
+## Configurar o SQL Server
+
+``` application.yml
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=nome_do_seu_banco
+    username: seu_usuario
+    password: sua_senha
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.SQLServer2012Dialect
+```
 
 ## Banco de Dados
+A tabela *Logs_eventos* é opcional e está construida na documentação para caso resolva implementa-lá.
 
 ``` SQL SERVER
+CREATE DATABASE bd_sgvv;
+
+USE bd_sgvv;
 
 CREATE TABLE Endereco (
   id_endereco INT IDENTITY(1,1) PRIMARY KEY,
@@ -124,7 +202,7 @@ CREATE TABLE Usuario (
 );
 GO
 
-
+-- OPCIONAL
 CREATE TABLE Logs_eventos(
   id_log BIGINT IDENTITY(1,1) PRIMARY KEY, -- ID único para cada evento de log, auto-incrementável
   data_hora_evento DATETIME2(7) NOT NULL DEFAULT GETDATE(), -- Carimbo de data/hora exato do evento, com alta precisão
@@ -134,4 +212,15 @@ CREATE TABLE Logs_eventos(
   usuario_responsavel VARCHAR(80) NOT NULL, -- Usuário que realizou a ação (pode ser o login da tabela 'Usuario' ou 'SUSER_SNAME()')
   detalhes_evento NVARCHAR(MAX) -- Descrição detalhada do evento (ex: 'Cliente ID 10 atualizado: Nome de "Antônio" para "Antônio Silva"'). NVARCHAR(MAX) para texto longo.
 );
+```
+
+## Dependências utilizadas no **Maven**
+Adicione a dependência no pom.xml do driver do SQL Server 2019.
+
+``` xml
+<dependency>
+    <groupId>com.microsoft.sqlserver</groupId>
+    <artifactId>mssql-jdbc</artifactId>
+    <version>12.6.1.jre11</version>
+</dependency>
 ```
