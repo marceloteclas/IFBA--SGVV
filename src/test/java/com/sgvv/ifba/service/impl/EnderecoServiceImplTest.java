@@ -14,6 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -56,7 +58,7 @@ class EnderecoServiceImplTest {
     @Test
     @DisplayName("Deve salvar um endereço com sucesso")
     void deveSalvarEnderecoComSucesso() {
-        // Simula o comportamento do repository.save quando é chamado
+        // Simula o comportamento do repository.save. Quando save() for chamado, ele irá retornar o objeto 'endereco' que criamos.
         when(enderecoRepository.save(any(Endereco.class))).thenReturn(endereco);
 
         // Chama o método que está sendo testado
@@ -177,5 +179,28 @@ class EnderecoServiceImplTest {
         assertFalse(deletado);
         // Verifica se o método deleteById nunca foi chamado
         verify(enderecoRepository, never()).deleteById(anyLong());
+    }
+
+    @Test
+    @DisplayName("Deve lançar exceção se a operação de salvar no repositório falhar")
+    void deveLancarExcecaoSeSalvarFalhar() {
+        // Simula o lançamento de uma exceção quando o método save é chamado
+        when(enderecoRepository.save(any(Endereco.class))).thenThrow(new RuntimeException("Simulando falha no banco de dados"));
+
+        // O 'assertThrows' espera que a exceção seja lançada pelo serviço
+        assertThrows(RuntimeException.class, () -> enderecoService.salvar(enderecoDTO));
+
+        // Verifica que o método save do repository foi chamado uma vez antes da falha
+        verify(enderecoRepository, times(1)).save(any(Endereco.class));
+    }
+
+    @Test
+    @DisplayName("Deve retornar Optional vazio ao buscar ID se o repositório lançar exceção")
+    void deveLancarExcecaoSeBuscarPorIdFalhar() {
+        when(enderecoRepository.findById(anyLong())).thenThrow(new RuntimeException("Falha de conexão com o banco"));
+
+        assertThrows(RuntimeException.class, () -> enderecoService.buscarPorId(1L));
+
+        verify(enderecoRepository, times(1)).findById(1L);
     }
 }

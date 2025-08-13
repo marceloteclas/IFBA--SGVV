@@ -14,6 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -22,15 +24,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("Testes para EnderecoController")
 class EnderecoControllerTest {
 
-    // MockMvc é usado para simular requisições HTTP para o controlador
     @Autowired
     private MockMvc mockMvc;
 
-    // ObjectMapper é usado para converter objetos Java para JSON e vice-versa
     @Autowired
     private ObjectMapper objectMapper;
 
-    // @MockBean cria um mock do EnderecoService e o injeta no contexto do Spring
     @MockBean
     private EnderecoService enderecoService;
 
@@ -61,7 +60,7 @@ class EnderecoControllerTest {
         mockMvc.perform(post("/enderecos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(enderecoJson))
-                .andExpect(status().isCreated()) // Espera um status 201 Created
+                .andExpect(status().isCreated()) // Espera um status 201
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.estado").value("Bahia"));
 
@@ -150,5 +149,29 @@ class EnderecoControllerTest {
                 .andExpect(status().isNotFound()); // Espera um status 404 Not Found
 
         verify(enderecoService, times(1)).deletar(99L);
+    }
+
+    @Test
+    @DisplayName("Deve retornar 400 Bad Request ao tentar salvar um endereço com Estado vazio")
+    void deveRetornar400AoSalvarComEstadoVazio() throws Exception {
+        EnderecoDTO dtoInvalido = new EnderecoDTO(
+                null, // ID nulo para simular uma criação
+                " ", // Estado inválido
+                "Salvador",
+                "Barra",
+                "Avenida Oceânica",
+                "Apto 101"
+        );
+
+        String enderecoJson = objectMapper.writeValueAsString(dtoInvalido);
+
+        // O serviço não será chamado, então não precisamos de um mock
+        mockMvc.perform(post("/enderecos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(enderecoJson))
+                .andExpect(status().isBadRequest()); // Espera um status 400
+
+        // Verifica que o método salvar do serviço NUNCA foi chamado
+        verify(enderecoService, never()).salvar(any(EnderecoDTO.class));
     }
 }
