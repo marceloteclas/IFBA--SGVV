@@ -27,13 +27,29 @@ class ClienteDTOTest {
     void quandoCamposObrigatoriosNulos_deveRetornarViolacoes() {
         ClienteDTO dto = new ClienteDTO();
 
-        Set<ConstraintViolation<ClienteDTO>> violations = validator.validate(dto);
+    Set<ConstraintViolation<ClienteDTO>> violations = validator.validate(dto);
 
-        // DEBUG: imprime as mensagens para ver o que está causando as violações
-        violations.forEach(v -> System.out.println(v.getPropertyPath() + ": " + v.getMessage()));
+    assertEquals(6, violations.size());
 
-        assertEquals(6, violations.size()); // nome, email, telefone, cnh, cpf, endereco (todos nulos)
-    }
+    // Verifica cada violação pelo campo e mensagem
+    assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("nome")
+            && v.getMessage().equals("Nome é obrigatório")));
+
+    assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("email")
+            && v.getMessage().equals("Email é obrigatório")));
+
+    assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("telefone")
+            && v.getMessage().equals("Telefone é obrigatório")));
+
+    assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("cnh")
+            && v.getMessage().equals("CNH é obrigatória")));
+
+    assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("cpf")
+            && v.getMessage().equals("CPF é obrigatório")));
+
+    assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("endereco")
+            && v.getMessage().equals("Endereço é obrigatório")));
+}
 
     // Teste email inválido
     @Test
