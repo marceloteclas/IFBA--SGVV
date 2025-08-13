@@ -1,24 +1,18 @@
 package com.sgvv.ifba.service.impl;
 
 import com.sgvv.ifba.dto.CargoDTO;
-import com.sgvv.ifba.dto.EnderecoDTO;
 import com.sgvv.ifba.model.Cargo;
-import com.sgvv.ifba.model.Endereco;
-import com.sgvv.ifba.mapping.CargoMapper;
 import com.sgvv.ifba.repository.CargoRepository;
 import com.sgvv.ifba.service.CargoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class CargoServiceImpl implements CargoService {
 
     private final CargoRepository cargoRepository;
-    private final CargoMapper cargoMapper;
 
     @Override
     @Transactional // Garante que a operação seja transacional (commit ou rollback)
@@ -26,7 +20,7 @@ public class CargoServiceImpl implements CargoService {
         // Mapeia o DTO para a entidade
         Cargo cargo = new Cargo();
         cargo.setId(cargoDTO.getId()); // Se o ID for fornecido, atualiza o cargo existente
-        cargo.setNome(cargoDTO.getNome());
+        cargo.setNomeCargo(cargoDTO.getNomeCargo());
 
         // Salva a entidade no banco de dados
         Cargo cargoSalvo = cargoRepository.save(cargo);
@@ -43,14 +37,6 @@ public class CargoServiceImpl implements CargoService {
         }
         cargoRepository.deleteById(id);
         return true;
-    }
-
-    @Override
-    public List<CargoDTO> listarCargo() {
-        return cargoRepository.findAll()
-                .stream()
-                .map(cargoMapper::toDTO)
-                .toList();
     }
 
 }

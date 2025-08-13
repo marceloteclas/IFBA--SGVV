@@ -15,6 +15,6 @@ public class CargoDTO {
 
     @NotBlank(message = "Nome é obrigatório")
     @Size(max = 100, message = "Nome não pode ter mais de 100")
-    private String nome;
+    private String nomeCargo;
 
 }

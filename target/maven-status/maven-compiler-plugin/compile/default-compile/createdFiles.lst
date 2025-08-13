@@ -1,13 +1,10 @@
 com\sgvv\ifba\service\impl\CargoServiceImpl.class
 com\sgvv\ifba\dto\VeiculoDTO.class
 com\sgvv\ifba\mapping\ClienteMapper.class
-com\sgvv\ifba\mapping\NivelAcessoMapper.class
 com\sgvv\ifba\repository\UsuarioRepository.class
 com\sgvv\ifba\controller\NivelAcessoController.class
 com\sgvv\ifba\model\Endereco.class
 com\sgvv\ifba\controller\EnderecoController.class
-com\sgvv\ifba\controller\UsarioController.class
-com\sgvv\ifba\mapping\CargoMapperImpl.class
 com\sgvv\ifba\service\EnderecoService.class
 com\sgvv\ifba\controller\ClienteController.class
 com\sgvv\ifba\service\UsuarioService.class
@@ -26,11 +23,11 @@ com\sgvv\ifba\service\impl\ClienteServiceImpl.class
 com\sgvv\ifba\service\CargoService.class
 com\sgvv\ifba\mapping\EnderecoMapperImpl.class
 com\sgvv\ifba\service\impl\NivelAcessoServiceImpl.class
+com\sgvv\ifba\controller\UsuarioController.class
 com\sgvv\ifba\controller\CargoController.class
 com\sgvv\ifba\mapping\EnderecoMapper.class
 com\sgvv\ifba\repository\EnderecoRepository.class
 com\sgvv\ifba\model\Cargo.class
-com\sgvv\ifba\mapping\NivelAcessoMapperImpl.class
 com\sgvv\ifba\dto\EnderecoDTO.class
 com\sgvv\ifba\service\NivelAcessoService.class
 com\sgvv\ifba\controller\VeiculoController.class
@@ -40,7 +37,6 @@ com\sgvv\ifba\service\ClienteService.class
 com\sgvv\ifba\mapping\ClienteMapperImpl.class
 com\sgvv\ifba\service\impl\EnderecoServiceImpl.class
 com\sgvv\ifba\dto\NivelAcessoDTO.class
-com\sgvv\ifba\mapping\CargoMapper.class
 com\sgvv\ifba\repository\ClienteRepository.class
 com\sgvv\ifba\mapping\UsuarioMapperImpl.class
 com\sgvv\ifba\repository\CargoRepository.class

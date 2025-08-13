@@ -1,11 +1,8 @@
 package com.sgvv.ifba.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,11 +27,6 @@ public class NivelAcessoController {
 
         NivelAcessoDTO nivelAcessoSalvo = nivelAcessoService.salvar(nivelAcessoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(nivelAcessoSalvo); // Retorna 201 Created com o DTO salvo
-    }
-
-    @GetMapping
-    public ResponseEntity<List<NivelAcessoDTO>> listarTodos() {
-        return ResponseEntity.ok(nivelAcessoService.listarNivelAcesso());
     }
 
     @DeleteMapping("/{id}")

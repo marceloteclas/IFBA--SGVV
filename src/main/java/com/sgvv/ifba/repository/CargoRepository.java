@@ -7,6 +7,6 @@ import java.util.List;
 
 @Repository
 public interface CargoRepository extends JpaRepository<Cargo, Long> {
-    List<Cargo> findBynome(String nome);
+    List<Cargo> findBynomeCargo(String nomeCargo);
 
 }

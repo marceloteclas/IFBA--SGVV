@@ -1,24 +1,20 @@
 package com.sgvv.ifba.service.impl;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 import com.sgvv.ifba.dto.NivelAcessoDTO;
-import com.sgvv.ifba.mapping.NivelAcessoMapper;
+
 import com.sgvv.ifba.model.NivelAcesso;
 import com.sgvv.ifba.repository.NivelAcessoRepository;
 import com.sgvv.ifba.service.NivelAcessoService;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class NivelAcessoServiceImpl implements NivelAcessoService {
 
     private final NivelAcessoRepository nivelAcessoRepository;
-    private final NivelAcessoMapper nivelAcessoMapper;
-
-    public NivelAcessoServiceImpl(NivelAcessoRepository nivelAcessoRepository, NivelAcessoMapper nivelAcessoMapper) {
-        this.nivelAcessoRepository = nivelAcessoRepository;
-        this.nivelAcessoMapper = nivelAcessoMapper;
-    };
 
     @Override
     public NivelAcessoDTO salvar(NivelAcessoDTO nivelDTO) {
@@ -40,15 +36,6 @@ public class NivelAcessoServiceImpl implements NivelAcessoService {
         }
         nivelAcessoRepository.deleteById(id);
         return true;
-    }
-
-    @Override
-    public List<NivelAcessoDTO> listarNivelAcesso() {
-        return nivelAcessoRepository.findAll()
-                .stream()
-                .map(nivelAcessoMapper::toDto)
-                .toList();
-
     }
 
 }

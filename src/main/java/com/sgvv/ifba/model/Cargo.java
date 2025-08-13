@@ -24,6 +24,6 @@ public class Cargo {
 
     @NotNull
     @Column(nullable = false)
-    private String nome;
+    private String nomeCargo;
 
 }
