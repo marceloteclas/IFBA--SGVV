@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.sgvv.ifba.IfbaApplicationTests
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.84 s -- in com.sgvv.ifba.IfbaApplicationTests
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.68 s -- in com.sgvv.ifba.IfbaApplicationTests
->>>>>>> main
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.791 s -- in com.sgvv.ifba.IfbaApplicationTests
