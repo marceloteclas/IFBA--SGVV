@@ -9,4 +9,6 @@ import java.util.List;
 public interface CargoRepository extends JpaRepository<Cargo, Long> {
     List<Cargo> findBynomeCargo(String nomeCargo);
 
+    boolean existsByNomeCargo(String nomeCargo);
+
 }

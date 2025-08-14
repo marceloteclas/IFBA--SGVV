@@ -15,17 +15,19 @@ public class CargoServiceImpl implements CargoService {
     private final CargoRepository cargoRepository;
 
     @Override
-    @Transactional // Garante que a operação seja transacional (commit ou rollback)
+    @Transactional
     public CargoDTO salvar(CargoDTO cargoDTO) {
-        // Mapeia o DTO para a entidade
+        // Verifica duplicidade
+        if (cargoRepository.existsByNomeCargo(cargoDTO.getNomeCargo())) {
+            throw new IllegalArgumentException("Já existe um cargo com esse nome.");
+        }
+
         Cargo cargo = new Cargo();
-        cargo.setId(cargoDTO.getId()); // Se o ID for fornecido, atualiza o cargo existente
+        cargo.setId(cargoDTO.getId());
         cargo.setNomeCargo(cargoDTO.getNomeCargo());
 
-        // Salva a entidade no banco de dados
         Cargo cargoSalvo = cargoRepository.save(cargo);
 
-        // Mapeia a entidade salva de volta para um DTO e retorna
         cargoDTO.setId(cargoSalvo.getId());
         return cargoDTO;
     }
@@ -38,5 +40,4 @@ public class CargoServiceImpl implements CargoService {
         cargoRepository.deleteById(id);
         return true;
     }
-
 }

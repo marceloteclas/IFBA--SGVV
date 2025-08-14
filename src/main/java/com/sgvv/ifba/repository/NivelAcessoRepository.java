@@ -10,4 +10,6 @@ import com.sgvv.ifba.model.NivelAcesso;
 public interface NivelAcessoRepository extends JpaRepository<NivelAcesso, Long> {
     List<NivelAcesso> findByNivel(String nivel);
 
+    boolean existsByNivel(String nivel);
+
 }

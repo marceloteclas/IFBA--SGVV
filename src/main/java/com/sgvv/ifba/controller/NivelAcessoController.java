@@ -23,10 +23,13 @@ public class NivelAcessoController {
     private final NivelAcessoService nivelAcessoService;
 
     @PostMapping
-    public ResponseEntity<NivelAcessoDTO> salvar(@RequestBody @Valid NivelAcessoDTO nivelAcessoDTO) {
-
-        NivelAcessoDTO nivelAcessoSalvo = nivelAcessoService.salvar(nivelAcessoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nivelAcessoSalvo); // Retorna 201 Created com o DTO salvo
+    public ResponseEntity<?> salvar(@RequestBody @Valid NivelAcessoDTO nivelAcessoDTO) {
+        try {
+            NivelAcessoDTO salvo = nivelAcessoService.salvar(nivelAcessoDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

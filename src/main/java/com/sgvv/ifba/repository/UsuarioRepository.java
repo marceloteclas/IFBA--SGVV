@@ -7,8 +7,10 @@ import com.sgvv.ifba.model.Usuario;
 import java.util.List;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     List<Usuario> findByNome(String nome);
-    
+
+    boolean existsByLogin(String login);
+
 }

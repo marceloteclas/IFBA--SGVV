@@ -8,7 +8,6 @@ import com.sgvv.ifba.repository.NivelAcessoRepository;
 import com.sgvv.ifba.service.NivelAcessoService;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Service
 @AllArgsConstructor
@@ -18,6 +17,10 @@ public class NivelAcessoServiceImpl implements NivelAcessoService {
 
     @Override
     public NivelAcessoDTO salvar(NivelAcessoDTO nivelDTO) {
+        // Verifica duplicidade
+        if (nivelAcessoRepository.existsByNivel(nivelDTO.getNivel())) {
+            throw new IllegalArgumentException("Já existe um nível de acesso com esse nome.");
+        }
 
         NivelAcesso nivelAcesso = new NivelAcesso();
         nivelAcesso.setId(nivelDTO.getId());
@@ -26,7 +29,6 @@ public class NivelAcessoServiceImpl implements NivelAcessoService {
         NivelAcesso savedNivelAcesso = nivelAcessoRepository.save(nivelAcesso);
         nivelDTO.setId(savedNivelAcesso.getId());
         return nivelDTO;
-
     }
 
     @Override
@@ -37,5 +39,4 @@ public class NivelAcessoServiceImpl implements NivelAcessoService {
         nivelAcessoRepository.deleteById(id);
         return true;
     }
-
 }

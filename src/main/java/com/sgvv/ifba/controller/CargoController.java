@@ -21,13 +21,13 @@ public class CargoController {
     private final CargoService cargoService;
 
     @PostMapping
-    public ResponseEntity<CargoDTO> salvar(@RequestBody @Valid CargoDTO cargoDTO) {
-        CargoDTO cargoSalvo = cargoService.salvar(cargoDTO);
-        if (cargoSalvo == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // Retorna 400 Bad Request se não puder salvar
+    public ResponseEntity<?> salvar(@RequestBody @Valid CargoDTO cargoDTO) {
+        try {
+            CargoDTO cargoSalvo = cargoService.salvar(cargoDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(cargoSalvo);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(cargoDTO);
-
     }
 
     @DeleteMapping("/{id}")

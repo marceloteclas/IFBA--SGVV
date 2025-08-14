@@ -19,6 +19,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
+        if (usuarioRepository.existsByLogin(usuarioDTO.getLogin())) {
+            throw new IllegalArgumentException("Já existe um usuário com este login: " + usuarioDTO.getLogin());
+        }
+
         Usuario entity = usuarioMapper.toEntity(usuarioDTO);
         Usuario saved = usuarioRepository.save(entity);
         return usuarioMapper.toDto(saved);
