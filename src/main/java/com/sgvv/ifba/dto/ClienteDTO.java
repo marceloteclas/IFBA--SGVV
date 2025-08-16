@@ -21,9 +21,10 @@ public class ClienteDTO {
     @Size(max = 100, message = "Nome não pode ter mais de 100")
     private String nome;
 
-    @NotNull(message = "Email inválido")
+    @NotNull(message = "Email é obrigatório")
     @Email(message = "Email inválido")
     private String email;
+
 
     @NotNull(message = "Telefone é obrigatório")
     @Pattern(regexp = "\\d{11}", message = "Telefone deve ter 11 dígitos")
