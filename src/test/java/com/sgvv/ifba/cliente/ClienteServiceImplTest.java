@@ -1,4 +1,4 @@
-package com.sgvv.ifba;
+package com.sgvv.ifba.cliente;
 
 import com.sgvv.ifba.dto.ClienteDTO;
 import com.sgvv.ifba.mapping.ClienteMapper;

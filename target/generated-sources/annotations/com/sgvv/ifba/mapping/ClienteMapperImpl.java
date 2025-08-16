@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-08-16T15:57:24-0300",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.42.50.v20250729-0351, environment: Java 21.0.8 (Eclipse Adoptium)"
+    date = "2025-08-16T16:13:51-0300",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.6 (Oracle Corporation)"
 )
 @Component
 public class ClienteMapperImpl implements ClienteMapper {
@@ -23,14 +23,6 @@ public class ClienteMapperImpl implements ClienteMapper {
 
         Cliente cliente = new Cliente();
 
-        cliente.setCnh( dto.getCnh() );
-        cliente.setCpf( dto.getCpf() );
-        cliente.setEmail( dto.getEmail() );
-        cliente.setEndereco( toEntity( dto.getEndereco() ) );
-        cliente.setId( dto.getId() );
-        cliente.setNome( dto.getNome() );
-        cliente.setTelefone( dto.getTelefone() );
-
         return cliente;
     }
 
@@ -41,14 +33,6 @@ public class ClienteMapperImpl implements ClienteMapper {
         }
 
         ClienteDTO clienteDTO = new ClienteDTO();
-
-        clienteDTO.setCnh( entity.getCnh() );
-        clienteDTO.setCpf( entity.getCpf() );
-        clienteDTO.setEmail( entity.getEmail() );
-        clienteDTO.setEndereco( toDto( entity.getEndereco() ) );
-        clienteDTO.setId( entity.getId() );
-        clienteDTO.setNome( entity.getNome() );
-        clienteDTO.setTelefone( entity.getTelefone() );
 
         return clienteDTO;
     }
@@ -61,13 +45,6 @@ public class ClienteMapperImpl implements ClienteMapper {
 
         Endereco endereco = new Endereco();
 
-        endereco.setBairro( dto.getBairro() );
-        endereco.setCidade( dto.getCidade() );
-        endereco.setEstado( dto.getEstado() );
-        endereco.setId( dto.getId() );
-        endereco.setIdentificacaoResidencial( dto.getIdentificacaoResidencial() );
-        endereco.setLogradouro( dto.getLogradouro() );
-
         return endereco;
     }
 
@@ -78,13 +55,6 @@ public class ClienteMapperImpl implements ClienteMapper {
         }
 
         EnderecoDTO enderecoDTO = new EnderecoDTO();
-
-        enderecoDTO.setBairro( entity.getBairro() );
-        enderecoDTO.setCidade( entity.getCidade() );
-        enderecoDTO.setEstado( entity.getEstado() );
-        enderecoDTO.setId( entity.getId() );
-        enderecoDTO.setIdentificacaoResidencial( entity.getIdentificacaoResidencial() );
-        enderecoDTO.setLogradouro( entity.getLogradouro() );
 
         return enderecoDTO;
     }

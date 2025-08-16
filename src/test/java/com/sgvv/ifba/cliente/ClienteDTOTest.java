@@ -1,4 +1,4 @@
-package com.sgvv.ifba;
+package com.sgvv.ifba.cliente;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
