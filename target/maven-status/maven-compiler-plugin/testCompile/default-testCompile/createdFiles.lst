@@ -1,7 +1,0 @@
-com\sgvv\ifba\controller\CargoControllerTest.class
-com\sgvv\ifba\IfbaApplicationTests.class
-com\sgvv\ifba\controller\UsuarioControllerTest.class
-com\sgvv\ifba\controller\NivelAcessoControllerTest.class
-com\sgvv\ifba\service\UsuarioServiceImplTest.class
-com\sgvv\ifba\service\CargoServiceImplTest.class
-com\sgvv\ifba\service\NivelAcessoServiceImplTest.class
