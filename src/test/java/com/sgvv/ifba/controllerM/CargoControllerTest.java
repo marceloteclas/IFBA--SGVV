@@ -1,6 +1,7 @@
-package com.sgvv.ifba.controller;
+package com.sgvv.ifba.controllerM;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sgvv.ifba.controller.CargoController;
 import com.sgvv.ifba.dto.CargoDTO;
 import com.sgvv.ifba.service.CargoService;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,6 +1,7 @@
-package com.sgvv.ifba.controller;
+package com.sgvv.ifba.controllerM;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sgvv.ifba.controller.NivelAcessoController;
 import com.sgvv.ifba.dto.NivelAcessoDTO;
 import com.sgvv.ifba.service.NivelAcessoService;
 import org.junit.jupiter.api.BeforeEach;
