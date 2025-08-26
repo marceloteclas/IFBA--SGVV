@@ -1,5 +1,6 @@
 package com.sgvv.ifba.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,22 +10,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EnderecoDTO {
-    
+
     private Long id;
 
-    @NotNull
+    @NotBlank(message = "Estado é obrigatório")
     private String estado;
 
-    @NotNull
+    @NotBlank(message = "Cidade é obrigatória")
     private String cidade;
 
-    @NotNull
+    @NotBlank(message = "Bairro é obrigatório")
     private String bairro;
 
-    @NotNull
+    @NotBlank(message = "Logradouro é obrigatório")
     private String logradouro;
 
-    @NotNull
+    @NotBlank(message = "Identificação residencial é obrigatória")
     private String identificacaoResidencial;
-
 }
+

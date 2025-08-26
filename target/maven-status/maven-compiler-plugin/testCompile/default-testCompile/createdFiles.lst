@@ -1,8 +1,14 @@
-com\sgvv\ifba\cliente\ClienteControllerTest.class
 com\sgvv\ifba\cliente\ClienteServiceImplTest.class
 com\sgvv\ifba\IfbaApplicationTests.class
+com\sgvv\ifba\service\impl\NivelAcessoServiceImplTest.class
+com\sgvv\ifba\service\impl\UsuarioServiceImplTest.class
 com\sgvv\ifba\controller\EnderecoControllerTest.class
 com\sgvv\ifba\service\impl\VeiculoServiceImplTest.class
-com\sgvv\ifba\cliente\ClienteDTOTest.class
+com\sgvv\ifba\controller\NivelAcessoControllerTest.class
 com\sgvv\ifba\controller\VeiculoControllerTest.class
+com\sgvv\ifba\service\impl\CargoServiceImplTest.class
+com\sgvv\ifba\cliente\ClienteControllerTest.class
+com\sgvv\ifba\controller\CargoControllerTest.class
+com\sgvv\ifba\controller\UsuarioControllerTest.class
+com\sgvv\ifba\cliente\ClienteDTOTest.class
 com\sgvv\ifba\service\impl\EnderecoServiceImplTest.class
