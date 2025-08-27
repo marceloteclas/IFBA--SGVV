@@ -53,7 +53,7 @@ O sistema visa registrar as vendas de veículos, cadastro de profissionais e cli
 ## Ferramentas
 - Java: JDK 21.0.6 LTS
 - Maven: 3.9.9
-test
+
 ## Estrutura do Projeto
 
 ```
@@ -106,6 +106,10 @@ test
 │                       └── IfbaApplicationTests.java           # Testes unitários e de integração
 └── pom.xml                                                     # Arquivo de configuração do Maven, gerencia dependências e build.
 ```
+
+## Modelagem de Banco de Dados
+
+![modelagem de dados SGVV](<modelagem de dados.jpg>)
 
 ## Configurar o SQL Server
 
